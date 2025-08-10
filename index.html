@@ -200,10 +200,32 @@
     @media (max-width:600px) {
       .gallery img { width:110px; height:110px; }
       .time-col { min-width:60px; padding:6px 10px; }
+
+      /* shrink quiz on small screens */
+      .quiz-card {
+        max-width: 90%;
+        font-size: 0.9rem;
+        padding: 0.8rem;
+        border-radius: 8px;
+        transform: scale(0.9);
+      }
+      .quiz-card h3 {
+        font-size: 1.1rem;
+      }
+      .quiz-options button {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+      }
     }
+    .quiz-container {
+  max-width: 400px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+	}
   </style>
 </head>
 <body>
+
 
 <header data-aos="fade-down">
   <h1>Happy 18th Birthday, Mira! 🎉💛</h1>
@@ -307,7 +329,7 @@
     <div id="quizContent">
       <!-- Questions inserted dynamically -->
     </div>
-    <div style="display:flex; gap:8px; margin-top:12px;">
+    <div style="display:flex; gap:3; margin-top:8;">
       <button onclick="submitQuiz()">Finish</button>
       <button style="background:#ddd; color:#663300;" onclick="closeQuiz()">Close</button>
     </div>
