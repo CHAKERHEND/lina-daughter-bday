@@ -1,363 +1,681 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Happy 18th Birthday, Mira! 💛</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    color: #333;
-    text-align: center;
-    background: linear-gradient(135deg, #ffe6cc, #ffcc99);
-    position: relative;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 18th, Mira! 🎉</title>
 
-  /* subtle noise texture overlay */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    background: url('https://www.transparenttextures.com/patterns/asfalt-light.png') repeat;
-    opacity: 0.05;
-    z-index: 0;
-  }
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  header, .notes, footer {
-    position: relative;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-width: 900px;
-    margin: 1.5rem auto;
-    padding: 2rem;
-    z-index: 1;
-  }
-
-  h1, h2, h3, p {
-    position: relative;
-    z-index: 1;
-    color: #663300;
-  }
-
-  .countdown {
-    font-size: 1.5rem;
-    margin: 1rem 0 2rem;
-    font-weight: bold;
-    color: #994d00;
-    letter-spacing: 1.1px;
-    transition: color 0.5s ease;
-  }
-  /* Animate countdown color pulse */
-  .countdown.pulse {
-    color: #ff7e36;
-    text-shadow: 0 0 8px #ff9f68;
-  }
-
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    max-width: 900px;
-    margin: 0 auto 2rem;
-  }
-
-  .gallery img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-
-  .gallery img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(255, 159, 104, 0.7);
-  }
-
-  .audio-section {
-    margin: 2rem auto;
-    max-width: 400px;
-  }
-
-  /* Custom music player controls */
-  #music-player {
-    background: #ff9f68;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 6px 12px rgba(255, 159, 104, 0.6);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #music-player h2 {
-    margin: 0 0 1rem;
-    color: white;
-    font-weight: 600;
-  }
-
-  #audio-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.7rem;
-  }
-
-  #audio-controls button {
-    background: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.7rem 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 159, 104, 0.5);
-  }
-  #audio-controls button:hover:not(:disabled) {
-    background-color: #ffd9b3;
-  }
-  #audio-controls button:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-
-  #current-track {
-    color: white;
-    font-style: italic;
-  }
-
-  .quiz-result {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: #663300;
-  }
-
-  #hiddenPhotoLink {
-    display: none;
-  }
-
-  #hiddenPhoto {
-    max-width: 300px;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    margin-top: 10px;
-  }
-
-  button {
-    background: #ff9f68;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 0.8rem 1.6rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 159, 104, 0.6);
-    z-index: 1;
-  }
-
-  button:hover {
-    background-color: #ff7e36;
-    box-shadow: 0 6px 12px rgba(255, 126, 54, 0.8);
-  }
-
-  @media (max-width: 600px) {
-    .gallery img {
-      width: 110px;
-      height: 110px;
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff0e6, #ffdab9);
+      color: #4d2600;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
-  }
-</style>
+    header {
+      padding: 3rem 1rem;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      color: #e67300;
+    }
+    .header-controls {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      display:flex;
+      gap:0.6rem;
+      align-items:center;
+    }
+    .tiny-toggle {
+      display:flex;
+      gap:0.4rem;
+      align-items:center;
+      background: rgba(255,255,255,0.9);
+      padding: 0.4rem;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .tiny-toggle input { margin-left: 0.3rem; }
+    .countdown {
+      font-size: 1rem;
+      color: #b35900;
+      margin-top: 0.6rem;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.75);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      background: #fff5e6;
+      padding: 1.5rem;
+      border-left: 6px solid #ff9933;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '💛';
+      position: absolute;
+      top: 1.2rem;
+      left: -1.8rem;
+      font-size: 1.2rem;
+    }
+
+    audio {
+      width: 100%;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: #ff9f68;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(255, 159, 104, 0.6);
+    }
+
+    button:hover {
+      background-color: #ff7e36;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7a4d00;
+      padding: 2rem 1rem;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
+      animation: floatHearts 6s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* --- Confetti canvas --- */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3000;
+    }
+
+    /* --- Starry Night canvas overlay --- */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* --- Countdown animated digits --- */
+    .countdown-wrap { display:flex; gap:12px; justify-content:center; align-items:center; margin-top:0.6rem; }
+    .time-col { background:#fff; padding:8px 12px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.06); text-align:center; min-width:72px; }
+    .time-col .label { font-size:0.75rem; color:#b35900; }
+    .time-col .value { font-size:1.15rem; color:#663300; font-weight:700; display:block; height:28px; line-height:28px; transition: transform 0.35s ease; }
+    .flip { transform: translateY(-8px); opacity:0.9; }
+
+    /* --- Quiz modal --- */
+    .quiz-modal { display:none; position:fixed; inset:0; align-items:center; justify-content:center; z-index:2500; background: rgba(0,0,0,0.65); padding:20px; }
+    .quiz-card { background:#fff; border-radius:12px; padding:1.2rem; max-width:540px; width:100%; box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+    .quiz-question { margin-bottom:12px; }
+    .quiz-options button { display:block; margin:6px 0; width:100%; text-align:left; }
+
+    /* responsive */
+    @media (max-width:600px) {
+      .gallery img { width:110px; height:110px; }
+      .time-col { min-width:60px; padding:6px 10px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>Happy 18th Birthday, Mira! 💛🎉</h1>
-  <p>To my beautiful Mariana, who lights up my life since 25 March. 💛</p>
-  <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true">Counting down to your special day... 💛</div>
+<header data-aos="fade-down">
+  <h1>Happy 18th Birthday, Mira! 🎉💛</h1>
+  <p>To my beautiful Mariana, who’s lit up my life since 25 March.</p>
+
+  <div class="header-controls">
+    <div class="tiny-toggle" title="Toggle background music">
+      <label style="font-size:0.9rem;">Music</label>
+      <input id="musicToggle" type="checkbox" />
+    </div>
+
+    <div class="tiny-toggle" title="Starry Night Mode">
+      <label style="font-size:0.9rem;">Starry</label>
+      <input id="starToggle" type="checkbox" />
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown">Loading countdown...</div>
+
+  <div class="countdown-wrap" id="countdown-wrap" aria-hidden="false" style="margin-top:8px;">
+    <div class="time-col"><span class="value" id="days">-</span><span class="label">Days</span></div>
+    <div class="time-col"><span class="value" id="hours">-</span><span class="label">Hours</span></div>
+    <div class="time-col"><span class="value" id="minutes">-</span><span class="label">Minutes</span></div>
+    <div class="time-col"><span class="value" id="seconds">-</span><span class="label">Seconds</span></div>
+  </div>
 </header>
 
-<section class="gallery" id="gallery">
-  <!-- Your images -->
-  <img src="https://i.postimg.cc/k5m2m5fs/image-2025-08-09-170604346.png" alt="Screenshot" />
-  <img src="https://i.postimg.cc/SRJsrYxS/Screenshot-20250809-170134-Gallery.jpg" alt="Screenshot" />
-  <img src="https://i.postimg.cc/yd6WDbqS/Screenshot-20250809-170131-Gallery.jpg" alt="Screenshot" />
-</section>
-
-<section class="audio-section" id="music-player" aria-label="Birthday music player">
-  <h2>Ur cutie msgs 🎵</h2>
-  <audio id="audio" preload="auto">
-    <source src="https://drive.google.com/uc?export=download&id=1V-K1eUSe4FvxMHj4WdW1JrqbBJkrTzwq" type="audio/mpeg" />
-    <source src="https://drive.google.com/uc?export=download&id=1OukrbMhh2Ns3V1RVDIMLZ17QsjzoWqZr" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-  <div id="audio-controls">
-    <button id="prev" aria-label="Previous track" disabled>⏮️ Prev</button>
-    <button id="play" aria-label="Play music">▶️ Play</button>
-    <button id="pause" aria-label="Pause music" disabled>⏸️ Pause</button>
-    <button id="next" aria-label="Next track">⏭️ Next</button>
+<div class="section" data-aos="fade-up">
+  <div class="gallery">
+    <img src="https://i.postimg.cc/k5m2m5fs/image-2025-08-09-170604346.png" alt="1" onclick="openModal(this.src)">
+    <img src="https://i.postimg.cc/SRJsrYxS/Screenshot-20250809-170134-Gallery.jpg" alt="2" onclick="openModal(this.src)">
+    <img src="https://i.postimg.cc/yd6WDbqS/Screenshot-20250809-170131-Gallery.jpg" alt="3" onclick="openModal(this.src)">
   </div>
-  <div id="current-track" aria-live="polite" aria-atomic="true">first</div>
-  <small style="color: white; margin-top: 0.6rem; font-style: italic;">
-    if i didnt work js know i tried untill i got tired for the audios i passed around two hours on audios alone love yaaa ❤️
-  </small>
-</section>
+</div>
 
-<section class="notes">
-  <h2>read this bitch</h2>
-  <p>u the sunshine in my darkest days amor 💛”</p>
-  <p>every day with you is a makes me soo fkin happy 💛”</p>
-  <p>espero que tengas un hermoso día 💛”</p>
-</section>
+<div class="section" data-aos="fade-up">
+  <h2>Ur Cutie Msgs 🎧</h2>
+  <!-- This original audio remains untouched for compatibility -->
+  <audio controls>
+    <source src="https://drive.google.com/uc?export=download&id=1V-K1eUSe4FvxMHj4WdW1JrqbBJkrTzwq" type="audio/mpeg">
+  </audio>
+  <p style="font-style: italic;">“if i didnt work js know i tried untill i got tired for the audios i passed around two hours on audios alone love yaaa ❤️” ❤️</p>
+</div>
 
-<section class="quiz">
-  <h2>who is my baby</h2>
-  <button onclick="showAnswer()" aria-controls="hiddenPhotoLink">clickk meeee</button>
-  <div class="quiz-result" id="quiz-result" aria-live="polite"></div>
-  <!-- Hidden image only shown after button click -->
-  <a href="https://ibb.co/fLpJQHt" target="_blank" id="hiddenPhotoLink" aria-hidden="true" tabindex="-1">
-   <img src="https://i.postimg.cc/85yQty7W/20250809-160322.jpg" alt="Screenshot" />
-  </a>
-</section>
+<div class="section timeline" data-aos="fade-up">
+  <h2>the storyyy </h2>
 
-<h3>Happy 18th Birthday, Mira ❤️ A year ago, we were just two voices and a couple of pixels on Discord… and somehow, you became my favorite person in the whole world. From late night talks to that beautiful little book u made me, you’ve filled my life with love, laughter, and a million reasons to be grateful. Today, mi amor, you officially become an adult but to me, you’ll always be that sweet, funny, and slightly crazy girl who stole my heart without even trying. Feliz cumpleaños, mi Mira. Here to ur dreams ur smile and to us siempre. dont drink alot hoe  </h3>
+  <div class="timeline-item">
+    <h3>March 25th 🌟</h3>
+    <p>When everything began  a voice a laugh, and something just clicked</p>
+  </div>
+
+  <div class="timeline-item">
+    <h3>Late Night Talks 🌙</h3>
+    <p>Those calls that never ended — we could talk forever and it still wasn’t enough</p>
+  </div>
+
+  <div class="timeline-item">
+    <h3>the laughs </h3>
+    <p>You made me laugh at my worst — that's magic, not luck</p>
+  </div>
+
+  <div class="timeline-item">
+    <h3>Now, 18 🎂</h3>
+    <p>Mi amor, you’re officially an adult, but to me, you’ll always be my crazy girl. Feliz cumpleaños, Mira.</p>
+  </div>
+</div>
+
+<div class="section" data-aos="fade-up">
+  <h2>Love Note 💌</h2>
+  <p style="line-height: 1.8">
+    Happy 18th Birthday, Mira ❤️ A year ago, we were just two voices and a couple of pixels on Discord… and somehow, you became my favorite person in the world. From late night talks to that beautiful little book you made me, you filled my life with love, laughter, and a million reasons to be grateful. Today, mi amor, you officially become an adult — but to me, you’ll always be that sweet, funny, and slightly crazy girl who stole my heart without even trying. <br/><br/>
+    Feliz cumpleaños, mi Mira. Here's to your dreams, your smile, and to us — siempre. Don’t drink a lot hoe. 🥂
+  </p>
+
+  <!-- New "clickk meeee" button with modal -->
+  <h2 style="margin-top: 3rem;">who is my baby</h2>
+  <button onclick="showSecretModal()">clickk meeee</button>
+  <button onclick="openQuiz()" style="margin-left:10px;">play this game hoe and win</button>
+  <div id="quiz-result" style="margin-top: 1rem; font-weight: bold; color: #663300;"></div>
+</div>
 
 <footer>
-  Made with 💛 by me for Mira.
+  Made with 💛 by me for Mira — forever and always.
 </footer>
 
+<!-- Modal Viewer for gallery -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <img id="modal-img" src="" alt="Preview" />
+</div>
+
+<!-- Modal Viewer for secret baby image -->
+<div class="modal" id="secretModal" onclick="closeSecretModal()">
+  <img id="secretModalImg" src="https://i.postimg.cc/85yQty7W/20250809-160322.jpg" alt="your baby" />
+</div>
+
+<!-- Quiz Modal -->
+<div class="quiz-modal" id="quizModal" onclick="if(event.target===this) closeQuiz()">
+  <div class="quiz-card" id="quizCard">
+    <h3>play this game if u win first time ima be spain in one week</h3>
+    <div id="quizContent">
+      <!-- Questions inserted dynamically -->
+    </div>
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button onclick="submitQuiz()">Finish</button>
+      <button style="background:#ddd; color:#663300;" onclick="closeQuiz()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating hearts -->
 <script>
-  // Countdown Timer to August 31, 2025 (her 18th birthday)
-  const countdownEl = document.getElementById('countdown');
-  const birthday = new Date('2025-08-31T00:00:00');
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 500);
+</script>
+
+<!-- Confetti & Stars canvases -->
+<canvas id="confetti-canvas"></canvas>
+<canvas id="stars"></canvas>
+
+<!-- Background music (for toggle) -->
+<audio id="bg-music" loop>
+  <!-- IMPORTANT: Replace "song.mp3" with the filename/path to your uploaded audio.
+       If you want the local uploaded file to be used, save it next to this HTML and
+       set src="song.mp3" (or whatever file name). -->
+  <source src="song.mp3" type="audio/mpeg">
+  <!-- fallback text -->
+</audio>
+
+<!-- Countdown Script (keeps your original target logic but adds animation) -->
+<script>
+  // Preserve your original target date
+  const countdownEl = document.getElementById("countdown");
+  const target = new Date("2025-08-31T00:00:00");
+
+  // new animated fields
+  const elDays = document.getElementById('days');
+  const elHours = document.getElementById('hours');
+  const elMinutes = document.getElementById('minutes');
+  const elSeconds = document.getElementById('seconds');
+
+  let prev = { d: null, h: null, m: null, s: null };
+
+  function formatNumber(n) { return n.toString().padStart(2, '0'); }
 
   function updateCountdown() {
     const now = new Date();
-    const diff = birthday - now;
-    if(diff <= 0) {
-      countdownEl.textContent = "Happy 18th Birthday, Mira! 🎂🎉";
-      countdownEl.classList.remove('pulse');
-      clearInterval(timer);
+    const diff = target - now;
+
+    if (diff <= 0) {
+      countdownEl.textContent = "🎂 Happy 18th Birthday, Mira!";
+      // celebration effect when hits zero
+      launchConfetti(120);
       return;
     }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    countdownEl.textContent = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s 💛`;
-    
-    // Pulse animation near birthday (7 days or less)
-    if (days <= 7) {
-      countdownEl.classList.add('pulse');
-    } else {
-      countdownEl.classList.remove('pulse');
-    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    countdownEl.textContent = `Time left: ${d}d ${h}h ${m}m ${s}s 💛`;
+
+    // animated update: toggle small flip class when number changes
+    if (prev.d !== d) { animateFlip(elDays, d); prev.d = d; }
+    if (prev.h !== h) { animateFlip(elHours, h); prev.h = h; }
+    if (prev.m !== m) { animateFlip(elMinutes, m); prev.m = m; }
+    if (prev.s !== s) { animateFlip(elSeconds, s); prev.s = s; }
   }
 
-  const timer = setInterval(updateCountdown, 1000);
+  function animateFlip(element, value) {
+    element.classList.add('flip');
+    element.textContent = formatNumber(value);
+    // remove flip after animation ends
+    setTimeout(()=> element.classList.remove('flip'), 360);
+  }
+
+  // run every 1s
+  setInterval(updateCountdown, 1000);
   updateCountdown();
-
-  // Show picture on button click
-  function showAnswer() {
-    const quizResult = document.getElementById('quiz-result');
-    quizResult.textContent = ""; // clear text if any
-    const photoLink = document.getElementById('hiddenPhotoLink');
-    photoLink.style.display = 'inline-block'; // show the clickable image
-    photoLink.setAttribute('aria-hidden', 'false');
-    photoLink.setAttribute('tabindex', '0');
-  }
-
-  // Music player logic with multiple tracks
-  const tracks = [
-    {
-      src: "https://drive.google.com/uc?export=download&id=1V-K1eUSe4FvxMHj4WdW1JrqbBJkrTzwq",
-      title: "Cutie Msg 1"
-    },
-    {
-      src: "https://drive.google.com/uc?export=download&id=1OukrbMhh2Ns3V1RVDIMLZ17QsjzoWqZr",
-      title: "Cutie Msg 2"
-    }
-  ];
-
-  const audio = document.getElementById('audio');
-  const playBtn = document.getElementById('play');
-  const pauseBtn = document.getElementById('pause');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  const currentTrackEl = document.getElementById('current-track');
-
-  let currentTrackIndex = 0;
-
-  function loadTrack(index) {
-    audio.src = tracks[index].src;
-    currentTrackEl.textContent = `Track ${index + 1}: ${tracks[index].title}`;
-    updateButtons();
-  }
-
-  function updateButtons() {
-    prevBtn.disabled = currentTrackIndex === 0;
-    nextBtn.disabled = currentTrackIndex === tracks.length -1;
-    playBtn.disabled = false;
-    pauseBtn.disabled = true;
-  }
-
-  playBtn.addEventListener('click', () => {
-    audio.play();
-    playBtn.disabled = true;
-    pauseBtn.disabled = false;
-  });
-
-  pauseBtn.addEventListener('click', () => {
-    audio.pause();
-    playBtn.disabled = false;
-    pauseBtn.disabled = true;
-  });
-
-  prevBtn.addEventListener('click', () => {
-    if(currentTrackIndex > 0) {
-      currentTrackIndex--;
-      loadTrack(currentTrackIndex);
-      audio.play();
-      playBtn.disabled = true;
-      pauseBtn.disabled = false;
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if(currentTrackIndex < tracks.length - 1) {
-      currentTrackIndex++;
-      loadTrack(currentTrackIndex);
-      audio.play();
-      playBtn.disabled = true;
-      pauseBtn.disabled = false;
-    }
-  });
-
-  audio.addEventListener('ended', () => {
-    // Auto next track or stop at end
-    if(currentTrackIndex < tracks.length -1) {
-      currentTrackIndex++;
-      loadTrack(currentTrackIndex);
-      audio.play();
-    } else {
-      playBtn.disabled = false;
-      pauseBtn.disabled = true;
-    }
-  });
-
-  // Initialize first track
-  loadTrack(currentTrackIndex);
-
 </script>
 
+<!-- Modal Scripts (preserve your originals) -->
+<script>
+  function openModal(src) {
+    document.getElementById('modal-img').src = src;
+    document.getElementById('modal').style.display = 'flex';
+    // trigger little confetti for fun
+    launchConfetti(18);
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function showSecretModal() {
+    document.getElementById("quiz-result").textContent = "💛";
+    document.getElementById('secretModal').style.display = 'flex';
+    // your secret click triggers confetti now
+    launchConfetti(40);
+  }
+
+  function closeSecretModal() {
+    document.getElementById('secretModal').style.display = 'none';
+  }
+</script>
+
+<!-- Small Confetti Implementation (lightweight) -->
+<script>
+  const confettiCanvas = document.getElementById('confetti-canvas');
+  const confettiCtx = confettiCanvas.getContext('2d');
+  let confettiPieces = [];
+
+  function resizeCanvas() {
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function makeConfettiParticle(x,y) {
+    return {
+      x, y,
+      size: Math.random() * 6 + 4,
+      color: ['#ff7e36', '#ffd48f', '#ffb6c1', '#ffd1d1'][Math.floor(Math.random()*4)],
+      tilt: Math.random() * 10,
+      speedX: (Math.random()-0.5)*6,
+      speedY: Math.random()*-6 - 2,
+      life: 100 + Math.random()*40
+    };
+  }
+
+  function launchConfetti(count=40) {
+    for (let i=0;i<count;i++){
+      confettiPieces.push(makeConfettiParticle(window.innerWidth/2 + (Math.random()-0.5)*200, window.innerHeight/2));
+    }
+    if(!confettiRunning) runConfetti();
+  }
+
+  let confettiRunning = false;
+  function runConfetti() {
+    confettiRunning = true;
+    const step = () => {
+      confettiCtx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+      for (let i=confettiPieces.length-1;i>=0;i--) {
+        const p = confettiPieces[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.speedY += 0.18; // gravity
+        p.tilt += 0.3;
+        p.life--;
+        confettiCtx.save();
+        confettiCtx.translate(p.x, p.y);
+        confettiCtx.rotate(p.tilt * Math.PI / 180);
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        confettiCtx.restore();
+        if (p.y > confettiCanvas.height + 50 || p.life < 0) confettiPieces.splice(i,1);
+      }
+      if(confettiPieces.length>0) requestAnimationFrame(step);
+      else confettiRunning = false;
+    };
+    requestAnimationFrame(step);
+  }
+
+  // small confetti on gallery open already implemented above
+  // also trigger confetti on generic clicks to make it playful (but limited)
+  let clickConfettiCooldown = false;
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    // don't fire for form controls or the quiz modal clicks; only for general surface clicks
+    if (clickConfettiCooldown) return;
+    // small chance to show confetti for everyday clicks (fun)
+    if (Math.random() < 0.06) {
+      launchConfetti(12);
+      clickConfettiCooldown = true;
+      setTimeout(()=> clickConfettiCooldown=false, 1200);
+    }
+  });
+</script>
+
+<!-- Starry Night Implementation -->
+<script>
+  const starCanvas = document.getElementById('stars');
+  const starCtx = starCanvas.getContext('2d');
+  let starParticles = [];
+  function resizeStars() {
+    starCanvas.width = window.innerWidth;
+    starCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeStars);
+  resizeStars();
+
+  // create subtle twinkling stars
+  function initStars() {
+    starParticles = [];
+    const count = Math.floor(window.innerWidth / 12);
+    for (let i=0;i<count;i++){
+      starParticles.push({
+        x: Math.random()*starCanvas.width,
+        y: Math.random()*starCanvas.height,
+        r: Math.random()*1.6 + 0.4,
+        alpha: Math.random(),
+        speed: Math.random()*0.02 + 0.005
+      });
+    }
+  }
+  initStars();
+
+  let starsAnimating = false;
+  function drawStars() {
+    starCtx.clearRect(0,0,starCanvas.width, starCanvas.height);
+    starParticles.forEach(s => {
+      s.alpha += s.speed;
+      if (s.alpha > 1.2) s.alpha = 0.05;
+      starCtx.beginPath();
+      starCtx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      starCtx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+      starCtx.fill();
+    });
+    if (starsAnimating) requestAnimationFrame(drawStars);
+  }
+
+  // toggling starry mode
+  const starToggle = document.getElementById('starToggle');
+  starToggle.addEventListener('change', (e)=> {
+    const on = e.target.checked;
+    if (on) {
+      document.getElementById('stars').style.display = 'block';
+      starsAnimating = true;
+      drawStars();
+      localStorage.setItem('starryMode','1');
+    } else {
+      document.getElementById('stars').style.display = 'none';
+      starsAnimating = false;
+      localStorage.removeItem('starryMode');
+    }
+  });
+
+  // load state
+  if (localStorage.getItem('starryMode')) {
+    starToggle.checked = true;
+    document.getElementById('stars').style.display = 'block';
+    starsAnimating = true;
+    drawStars();
+  }
+</script>
+
+<!-- Background Music Toggle & persistence -->
+<script>
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bg-music');
+
+  // Helper: try to load playing preference
+  function setMusicState(play) {
+    if (play) {
+      bgMusic.play().catch(()=>{ /* autoplay might be blocked; user must click to start */ });
+      musicToggle.checked = true;
+      localStorage.setItem('bgMusic','1');
+    } else {
+      bgMusic.pause();
+      musicToggle.checked = false;
+      localStorage.removeItem('bgMusic');
+    }
+  }
+
+  // toggle click
+  musicToggle.addEventListener('change', (e)=> {
+    setMusicState(e.target.checked);
+  });
+
+  // load saved preference
+  if (localStorage.getItem('bgMusic')) {
+    musicToggle.checked = true;
+    // try to resume play (may need user interaction on some browsers)
+    bgMusic.volume = parseFloat(localStorage.getItem('bgMusicVol') || '1');
+    setTimeout(()=> setMusicState(true), 300);
+  }
+
+  // small volume UI using right-click on the toggle (simple)
+  musicToggle.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    const vol = prompt('Set music volume (0.0 - 1.0)', localStorage.getItem('bgMusicVol') || '1');
+    if (vol !== null) {
+      const v = Math.max(0, Math.min(1, parseFloat(vol) || 1));
+      bgMusic.volume = v;
+      localStorage.setItem('bgMusicVol', v.toString());
+    }
+  });
+
+  // if bgMusic has no source (file missing), show a console hint
+  if (!bgMusic.querySelector('source') || !bgMusic.querySelector('source').src) {
+    console.log('NOTE: Replace <source src="song.mp3"> with your uploaded audio file path to enable background music toggle.');
+  }
+</script>
+
+<!-- Mini Love Quiz Implementation -->
+<script>
+  const quizQuestions = [
+    { q: "Where did we text our first time and who?", options: ["disc/chakou", "insta/chakou", "disc/mira", "ig/mira"], a: 0 },
+    { q: "who is mira bf(husband)?", options: ["hendaoui", "no one", "pistor", "vegeta"], a: 0 },
+    { q: "Pick the emoji that is mira vibe:", options: ["👽","🙈","🖕","🫦"], a: 1 },
+    { q: "who is mi baby?", options: ["mariana correa", "mira", "marieem", "lina daughter"], a: 0 },
+  ];
+
+  let quizAnswers = new Array(quizQuestions.length).fill(null);
+  const quizModal = document.getElementById('quizModal');
+  const quizContent = document.getElementById('quizContent');
+
+  function openQuiz() {
+    quizModal.style.display = 'flex';
+    renderQuiz();
+  }
+
+  function closeQuiz() {
+    quizModal.style.display = 'none';
+  }
+
+  function renderQuiz() {
+    quizContent.innerHTML = '';
+    quizQuestions.forEach((qq, i) => {
+      const div = document.createElement('div');
+      div.className = 'quiz-question';
+      div.innerHTML = `<strong>${i+1}. ${qq.q}</strong>`;
+      const opts = document.createElement('div');
+      opts.className = 'quiz-options';
+      qq.options.forEach((opt, j) => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.onclick = () => {
+          quizAnswers[i] = j;
+          // highlight selection
+          Array.from(opts.children).forEach(c=> c.style.background = '');
+          btn.style.background = '#ffefdb';
+        };
+        opts.appendChild(btn);
+      });
+      div.appendChild(opts);
+      quizContent.appendChild(div);
+    });
+  }
+
+  function submitQuiz() {
+    // simple scoring: count answers that match 'a'
+    let score = 0;
+    for (let i=0;i<quizQuestions.length;i++){
+      if (quizAnswers[i] === quizQuestions[i].a) score++;
+    }
+    closeQuiz();
+    const resultEl = document.getElementById('quiz-result');
+    // playful result messages
+    if (score === quizQuestions.length) {
+      resultEl.textContent = `goood joooob amoor (Score ${score}/${quizQuestions.length})`;
+      launchConfetti(80);
+    } else if (score >= 2) {
+      resultEl.textContent = `So sweet! You got ${score}/${quizQuestions.length} — only that mf`;
+      launchConfetti(30);
+    } else {
+      resultEl.textContent = `Awww, ${score}/${quizQuestions.length}. very bad bitch`;
+    }
+  }
+</script>
+
+<!-- AOS Scroll Animation -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+<h1>💛💛💛💛💛💛💛💛💛💛</h1>
 </body>
 </html>
-
-
-
